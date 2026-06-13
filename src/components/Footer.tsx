@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Mail, MapPin, Globe } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -97,10 +98,21 @@ export default function Footer() {
             <div className="flex items-center gap-3 text-sm">
               <Mail className="w-5 h-5 text-brand-gold shrink-0" />
               <a
-                href="mailto:contact@gsbstartupangels.com"
+                href="mailto:hello@gsbstartupangels.com"
                 className="text-slate-200 hover:text-white transition-colors break-all"
               >
-                contact@gsbstartupangels.com
+                hello@gsbstartupangels.com
+              </a>
+            </div>
+            <div className="flex items-center gap-3 text-sm">
+              <WhatsAppIcon className="w-5 h-5 text-brand-gold shrink-0" />
+              <a
+                href="https://wa.me/9187044494"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-200 hover:text-white transition-colors"
+              >
+                91870 44494
               </a>
             </div>
             <div className="flex items-center gap-3 text-sm">

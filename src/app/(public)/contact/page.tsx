@@ -14,6 +14,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import Button from "@/components/Button";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -95,8 +96,19 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email Us</p>
-                    <a href="mailto:contact@gsbstartupangels.com" className="text-slate-900 font-medium hover:text-indigo-600 transition-colors">
-                      contact@gsbstartupangels.com
+                    <a href="mailto:hello@gsbstartupangels.com" className="text-slate-900 font-medium hover:text-indigo-600 transition-colors">
+                      hello@gsbstartupangels.com
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                    <WhatsAppIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">WhatsApp</p>
+                    <a href="https://wa.me/9187044494" target="_blank" rel="noopener noreferrer" className="text-slate-900 font-medium hover:text-emerald-600 transition-colors">
+                      91870 44494
                     </a>
                   </div>
                 </div>
@@ -195,6 +207,26 @@ export default function ContactPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-6">WhatsApp Us</h3>
+                <a
+                  href="https://wa.me/9187044494"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all flex-shrink-0">
+                    <WhatsAppIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-900 mb-1">Chat on WhatsApp</p>
+                    <p className="text-slate-600 leading-relaxed group-hover:text-emerald-700 transition-colors">
+                      91870 44494
+                    </p>
+                  </div>
+                </a>
               </div>
 
               <div>
