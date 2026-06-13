@@ -10,7 +10,7 @@ export default function PublicLayout({
   return (
     <ScrollRevealProvider>
       <Navbar />
-      <main className="flex-grow flex flex-col overflow-x-hidden w-full">{children}</main>
+      <main className="flex-grow flex flex-col w-full">{children}</main>
       <Footer />
     </ScrollRevealProvider>
   );

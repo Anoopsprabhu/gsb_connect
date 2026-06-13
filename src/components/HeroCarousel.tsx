@@ -115,7 +115,7 @@ export default function HeroCarousel() {
   return (
     <section
       data-reveal-off
-      className="relative h-dvh min-h-[560px] w-full max-w-[100vw] overflow-hidden bg-black isolate"
+      className="relative h-dvh min-h-[560px] w-full overflow-hidden bg-black isolate"
     >
       <AnimatePresence initial={false} custom={direction}>
         <motion.div

@@ -6,7 +6,7 @@ import FeaturedEventsSection from "@/components/FeaturedEventsSection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full overflow-x-hidden">
+    <div className="flex flex-col w-full">
       <HeroCarousel />
       <AboutSection />
       <FeaturedEventsSection />
