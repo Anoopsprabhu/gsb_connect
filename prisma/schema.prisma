@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  date        DateTime
+  location    String
+  type        String
+  imageUrl    String?
+  publicId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  about       String?
+  endTime     String?
+  featured    String?
+  mapUrl      String?
+  roadmap     Json?
+  speakers    String?
+  startTime   String?
+  status      String   @default("published")
+  topic       String?
+  registrations Registration[]
+
+  @@index([status])
+  @@index([date])
+  @@index([type])
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("admin")
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([role])
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Startup {
+  id             String   @id @default(cuid())
+  startupName    String
+  founderName    String
+  email          String
+  phone          String
+  problem        String   @db.Text
+  solution       String   @db.Text
+  demoLink       String?
+  category       String
+  progress       String
+  funding        String?  @db.Text
+  revenueStage   String
+  burnRate       String?
+  roundSize      String?
+  roundStructure String?  @db.Text
+  valuation      String?
+  status         String   @default("pending")
+  userId         String?  // Clerk User ID of the creator
+  cofounderEmail String?  // Optional co-founder email
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([status])
+  @@index([category])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([cofounderEmail])
+}
+
+model GalleryItem {
+  id        String   @id @default(cuid())
+  title     String
+  caption   String?
+  altText   String?
+  imageUrl  String
+  publicId  String
+  sortOrder Int      @default(0)
+  status    String   @default("published")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+}
+
+model Registration {
+  id          String   @id @default(cuid())
+  eventId     String
+  event       Event    @relation(fields: [eventId], references: [id])
+  fullName    String
+  email       String
+  phone       String
+  dob         DateTime
+  age         Int
+  address     String
+  country     String
+  state       String
+  city        String
+  pincode     String
+  profession  String
+  category    String   // RSB, GSB, Other
+  interest    String   @db.Text
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([eventId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  designation String
+  imageUrl    String?
+  publicId    String?
+  bio         String?  @db.Text
+  sortOrder   Int      @default(0)
+  status      String   @default("published")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+}
