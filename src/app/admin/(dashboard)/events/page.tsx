@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import DataTable from "@/components/DataTable";
 import { Plus, Search, Calendar, MapPin, Tag } from "lucide-react";
@@ -52,6 +52,24 @@ export default function EventsListPage() {
     }
   };
 
+  const toggleRegistration = useCallback(async (id: string, current: boolean) => {
+    try {
+      const res = await fetch("/api/admin/events", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, registrationOpen: !current }),
+      });
+      if (res.ok) {
+        fetchData();
+      } else {
+        const err = await res.json();
+        alert(err.error || "Failed to update registration status");
+      }
+    } catch (error) {
+      console.error("Toggle registration failed:", error);
+    }
+  }, []);
+
   const columnDefs = useMemo<ColDef[]>(
     () => [
       { field: "title", headerName: "Event Title", flex: 2, minWidth: 250 },
@@ -81,6 +99,28 @@ export default function EventsListPage() {
             </Link>
           </div>
         ),
+      },
+      {
+        headerName: "Registration",
+        field: "registrationOpen",
+        flex: 1,
+        cellRenderer: (params: any) => {
+          const isOpen = params.data.registrationOpen !== false;
+          return (
+            <button
+              type="button"
+              onClick={() => toggleRegistration(params.data.id, isOpen)}
+              className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${
+                isOpen
+                  ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                  : "bg-red-50 text-red-700 hover:bg-red-100"
+              }`}
+              title={isOpen ? "Click to stop registrations" : "Click to open registrations"}
+            >
+              {isOpen ? "Open" : "Closed"}
+            </button>
+          );
+        },
       },
       {
         field: "status",
@@ -126,7 +166,7 @@ export default function EventsListPage() {
         width: 130,
       },
     ],
-    [],
+    [toggleRegistration],
   );
 
   const defaultColDef = useMemo(

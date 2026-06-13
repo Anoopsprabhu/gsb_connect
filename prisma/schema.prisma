@@ -27,6 +27,7 @@ model Event {
   startTime   String?
   status      String   @default("published")
   topic       String?
+  registrationOpen Boolean @default(true)
   registrations Registration[]
 
   @@index([status])

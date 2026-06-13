@@ -378,13 +378,19 @@ export default async function EventDetailPage({
               </div>
             </div>
 
-            <Button
-              href={`/events/${event.id}/register`}
-              size="large"
-              variant="primary"
-              className="w-full mt-8"
-              label="Register for Event"
-            />
+            {event.registrationOpen !== false ? (
+              <Button
+                href={`/events/${event.id}/register`}
+                size="large"
+                variant="primary"
+                className="w-full mt-8"
+                label="Register for Event"
+              />
+            ) : (
+              <div className="w-full mt-8 px-4 py-3.5 rounded-xl bg-slate-100 text-slate-500 text-center text-sm font-semibold border border-slate-200">
+                Registrations Closed
+              </div>
+            )}
 
             <Button
               variant="outline"

@@ -47,6 +47,7 @@ export default function EditEventPage() {
   });
 
   const [roadmap, setRoadmap] = useState([{ time: "", activity: "" }]);
+  const [registrationOpen, setRegistrationOpen] = useState(true);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -79,6 +80,7 @@ export default function EditEventPage() {
           if (event.roadmap) {
             setRoadmap(event.roadmap);
           }
+          setRegistrationOpen(event.registrationOpen !== false);
         }
       } catch (error) {
         console.error("Failed to fetch event:", error);
@@ -167,6 +169,7 @@ export default function EditEventPage() {
           publicId: formData.publicId || null,
           roadmap,
           status,
+          registrationOpen,
         }),
       });
 
@@ -404,6 +407,34 @@ export default function EditEventPage() {
               <option value="banking">Banking & Finance</option>
               <option value="culture">Culture & Heritage</option>
             </select>
+          </div>
+
+          {/* Registration */}
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 className="text-lg font-bold text-slate-800 mb-4">Registration</h2>
+            <label className="flex items-center justify-between gap-4 cursor-pointer">
+              <div>
+                <p className="text-sm font-medium text-slate-800">Accept registrations</p>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Turn off to stop new sign-ups for this event
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={registrationOpen}
+                onClick={() => setRegistrationOpen((v) => !v)}
+                className={`relative inline-flex h-7 w-12 shrink-0 rounded-full transition-colors ${
+                  registrationOpen ? "bg-indigo-600" : "bg-slate-300"
+                }`}
+              >
+                <span
+                  className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform mt-1 ${
+                    registrationOpen ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+              </button>
+            </label>
           </div>
         </div>
       </div>

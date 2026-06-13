@@ -21,6 +21,7 @@ function buildEventUpdateData(body: Record<string, unknown>): Prisma.EventUpdate
     speakers,
     featured,
     status,
+    registrationOpen,
   } = body;
 
   const data: Prisma.EventUpdateInput = {};
@@ -41,6 +42,7 @@ function buildEventUpdateData(body: Record<string, unknown>): Prisma.EventUpdate
   if (speakers !== undefined) data.speakers = speakers ? String(speakers) : null;
   if (featured !== undefined) data.featured = featured ? String(featured) : null;
   if (status !== undefined) data.status = String(status);
+  if (registrationOpen !== undefined) data.registrationOpen = Boolean(registrationOpen);
 
   return data;
 }
@@ -69,6 +71,7 @@ export async function GET(request: Request) {
         location: true,
         type: true,
         status: true,
+        registrationOpen: true,
         _count: {
           select: { registrations: true },
         },
@@ -128,6 +131,7 @@ export async function POST(request: Request) {
       speakers,
       featured,
       status,
+      registrationOpen,
     } = body;
 
     if (!title || !description || !date || !location || !type) {
@@ -152,6 +156,7 @@ export async function POST(request: Request) {
         speakers,
         featured,
         status: status || "published",
+        registrationOpen: registrationOpen !== false,
       },
     });
 
