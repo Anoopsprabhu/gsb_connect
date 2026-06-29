@@ -33,17 +33,46 @@ async function getUpcomingEvents() {
   }
 }
 
+async function getLatestWebinar() {
+  try {
+    return await prisma.webinar.findFirst({
+      where: {
+        status: "published",
+        date: { gte: new Date() },
+      },
+      orderBy: { date: "asc" },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        date: true,
+        startTime: true,
+        imageUrl: true,
+      },
+    });
+  } catch (error) {
+    console.error("Failed to fetch latest webinar:", error);
+    return null;
+  }
+}
+
 export default async function Home() {
   const upcomingEvents = await getUpcomingEvents();
+  const latestWebinar = await getLatestWebinar();
 
   const sliderEvents = upcomingEvents.map((event) => ({
     ...event,
     date: event.date.toISOString(),
   }));
 
+  const webinarProp = latestWebinar ? {
+    ...latestWebinar,
+    date: latestWebinar.date.toISOString(),
+  } : null;
+
   return (
     <div className="flex flex-col w-full">
-      <HeroCarousel />
+      <HeroCarousel latestWebinar={webinarProp} />
       <UpcomingEventsSlider events={sliderEvents} />
       <AboutSection />
       <FeaturedEventsSection />
