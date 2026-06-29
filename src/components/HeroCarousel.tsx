@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import Button from "./Button";
 
-const slides = [
+const staticSlides = [
   {
     id: 1,
     eyebrow: "Community · Capital · Growth",
@@ -57,21 +57,6 @@ const slides = [
       "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1470&auto=format&fit=crop",
     color: "from-amber-400/25 to-yellow-700/20",
   },
-  {
-    id: 4,
-    eyebrow: "Upcoming Event",
-    title: "Join Our Latest Webinar",
-    subtitle: "Learn, Network, and Grow",
-    description:
-      "Don't miss out on our latest insights and strategies from industry leaders. Register now to be part of the interactive sessions designed to elevate your entrepreneurial journey.",
-    primaryCta: "View Webinars",
-    primaryHref: "/webinars",
-    secondaryCta: "Learn More",
-    secondaryHref: "/about",
-    image:
-      "https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=1470&auto=format&fit=crop",
-    color: "from-amber-600/30 to-yellow-500/20",
-  },
 ];
 
 const containerVariants = {
@@ -106,9 +91,46 @@ const textVariants = {
   },
 };
 
-export default function HeroCarousel() {
+type WebinarData = {
+  id: string;
+  title: string;
+  description: string | null;
+  date: string;
+  startTime: string | null;
+  imageUrl: string | null;
+};
+
+export default function HeroCarousel({ latestWebinar }: { latestWebinar?: WebinarData | null }) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
+
+  const dynamicSlide = latestWebinar ? {
+    id: `webinar-${latestWebinar.id}`,
+    eyebrow: "Upcoming Webinar",
+    title: `${latestWebinar.title} • ${new Date(latestWebinar.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} ${latestWebinar.startTime ? `, ${latestWebinar.startTime}` : ""}`,
+    subtitle: "Learn, Network, and Grow",
+    description: latestWebinar.description || "Don't miss out on our latest insights and strategies from industry leaders.",
+    primaryCta: "Register Now",
+    primaryHref: `/webinars/${latestWebinar.id}`,
+    secondaryCta: "All Webinars",
+    secondaryHref: "/webinars",
+    image: latestWebinar.imageUrl || "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop",
+    color: "from-indigo-600/30 to-blue-500/20",
+  } : {
+    id: 'fallback-webinar',
+    eyebrow: "Webinars",
+    title: "Join Our Latest Webinars",
+    subtitle: "Learn from industry experts",
+    description: "Check out our webinars page to find upcoming sessions and masterclasses.",
+    primaryCta: "View Webinars",
+    primaryHref: "/webinars",
+    secondaryCta: "Learn More",
+    secondaryHref: "/about",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop",
+    color: "from-indigo-600/30 to-blue-500/20",
+  };
+
+  const slides = [dynamicSlide, ...staticSlides];
 
   const nextSlide = useCallback(() => {
     setDirection(1);
