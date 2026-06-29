@@ -123,17 +123,17 @@ export default async function EventsPage({
   return (
     <div className="flex flex-col w-full min-h-screen">
       {/* Header Section */}
-      <section className="relative bg-brand-navy h-[220px] sm:h-[260px] md:h-[320px] overflow-hidden" data-reveal-off>
+      <section className="relative bg-brand-navy h-[300px] sm:h-[400px] md:h-[450px] overflow-hidden flex items-center justify-center" data-reveal-off>
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2000&auto=format&fit=crop"
-            className="w-full h-full object-cover opacity-70"
+            className="w-full h-full object-cover opacity-60"
             alt="Startup founders and investors at a tech event"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1628]/50 via-[#0b1628]/75 to-[#0b1628]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1628]/60 via-[#0b1628]/80 to-[#0b1628]" />
         </div>
 
-        <div className="relative z-10 container flex items-center justify-center flex-col mx-auto h-full px-4 md:px-6 text-center pt-14 sm:pt-16">
+        <div className="relative z-10 container flex items-center justify-center flex-col mx-auto px-4 md:px-6 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white mb-3 sm:mb-4 tracking-tight">
             {timelineParam === "past" ? "Past Events" : timelineParam === "upcoming" ? "Upcoming Events" : "All Events"}
           </h1>

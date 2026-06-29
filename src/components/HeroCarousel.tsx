@@ -57,6 +57,21 @@ const slides = [
       "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1470&auto=format&fit=crop",
     color: "from-amber-400/25 to-yellow-700/20",
   },
+  {
+    id: 4,
+    eyebrow: "Upcoming Event",
+    title: "Join Our Latest Webinar",
+    subtitle: "Learn, Network, and Grow",
+    description:
+      "Don't miss out on our latest insights and strategies from industry leaders. Register now to be part of the interactive sessions designed to elevate your entrepreneurial journey.",
+    primaryCta: "View Webinars",
+    primaryHref: "/webinars",
+    secondaryCta: "Learn More",
+    secondaryHref: "/about",
+    image:
+      "https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=1470&auto=format&fit=crop",
+    color: "from-amber-600/30 to-yellow-500/20",
+  },
 ];
 
 const containerVariants = {
@@ -145,8 +160,8 @@ export default function HeroCarousel() {
           <div
             className={`absolute inset-0 bg-gradient-to-r ${slide.color} mix-blend-overlay`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" /> */}
         </motion.div>
       </AnimatePresence>
 
