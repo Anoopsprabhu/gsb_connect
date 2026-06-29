@@ -33,7 +33,7 @@ export function getCloudinaryBaseFolder() {
   return process.env.CLOUDINARY_FOLDER || "gsbconnect/startup";
 }
 
-export type CloudinarySubfolder = "events" | "team" | "gallery" | "general";
+export type CloudinarySubfolder = "events" | "team" | "gallery" | "webinars" | "general";
 
 export function getCloudinaryFolder(subfolder?: string) {
   const base = getCloudinaryBaseFolder();

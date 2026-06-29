@@ -17,6 +17,7 @@ import {
   Globe,
   User,
   ExternalLink,
+  Video,
 } from "lucide-react";
 import LogoutButton from "./LogoutButton";
 
@@ -58,6 +59,7 @@ export default function AdminSidebar() {
   const navItems = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
     { name: "Events", href: "/admin/events", icon: Calendar },
+    { name: "Webinars", href: "/admin/webinars", icon: Video },
     { name: "Gallery", href: "/admin/gallery", icon: Images },
     { name: "Users", href: "/admin/users", icon: Users },
     { name: "Registrations", href: "/admin/registrations", icon: CheckCircle },

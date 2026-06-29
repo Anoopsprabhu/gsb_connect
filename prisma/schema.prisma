@@ -149,3 +149,45 @@ model TeamMember {
 
   @@index([status])
 }
+
+model Webinar {
+  id               String   @id @default(cuid())
+  title            String
+  description      String   @db.Text
+  about            String?  @db.Text
+  date             DateTime
+  startTime        String?
+  endTime          String?
+  speakers         String?  @db.Text
+  imageUrl         String?
+  publicId         String?
+  webinarLink      String?
+  platform         String   @default("Zoom")
+  status           String   @default("published")
+  registrationOpen Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  registrations WebinarRegistration[]
+
+  @@index([status])
+  @@index([date])
+}
+
+model WebinarRegistration {
+  id           String   @id @default(cuid())
+  webinarId    String
+  webinar      Webinar  @relation(fields: [webinarId], references: [id], onDelete: Cascade)
+  fullName     String
+  email        String
+  phone        String
+  organization String?
+  interest     String?  @db.Text
+  status       String   @default("confirmed")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([webinarId])
+  @@index([email])
+  @@index([createdAt])
+}

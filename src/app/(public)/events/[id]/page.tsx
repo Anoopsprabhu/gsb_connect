@@ -121,13 +121,13 @@ export default async function EventDetailPage({
   return (
     <div className="bg-slate-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <section className="relative h-[45vh] min-h-[400px] w-full overflow-hidden bg-slate-900" data-reveal-off>
+      <section className="relative h-[45vh] lg:h-[60vh] min-h-[400px] lg:min-h-[500px] w-full overflow-hidden bg-slate-900" data-reveal-off>
         {event.imageUrl ? (
           <Image
             src={event.imageUrl}
             alt={event.title}
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
         ) : (

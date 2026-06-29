@@ -18,6 +18,7 @@ export default function Navbar() {
   const isTeam = pathname === "/team";
   const isContact = pathname === "/contact";
   const isEvents = pathname === "/events" || pathname.startsWith("/events/");
+  const isWebinars = pathname === "/webinars" || pathname.startsWith("/webinars/");
   const isGallery = pathname === "/gallery";
   const isRegister = pathname.includes("/register");
   const isHome = pathname === "/";
@@ -29,6 +30,7 @@ export default function Navbar() {
     isContact ||
     isRegister ||
     isEvents ||
+    isWebinars ||
     isGallery;
 
   useEffect(() => {
@@ -51,8 +53,8 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
+    { name: "Webinars", href: "/webinars" },
     { name: "Gallery", href: "/gallery" },
     { name: "About Us", href: "/about" },
     { name: "Team", href: "/team" },
@@ -66,11 +68,10 @@ export default function Navbar() {
           initial={{ y: -60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className={`w-full md:w-[95%] lg:w-[92%] py-1.5 sm:py-2 rounded-lg sm:rounded-xl transition-all duration-500 border overflow-visible ${
-            useScrolledStyle || isMenuOpen
+          className={`w-full md:w-[95%] lg:w-[92%] py-1.5 sm:py-2 rounded-lg sm:rounded-xl transition-all duration-500 border overflow-visible ${useScrolledStyle || isMenuOpen
               ? "bg-white/95 shadow-md border-slate-200 backdrop-blur-xl"
               : "bg-white/10 backdrop-blur-xl border-white/20 shadow-none"
-          }`}
+            }`}
         >
           <div className="container mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 h-[52px] sm:h-[56px] overflow-visible">
             <Link href="/" className="flex items-center shrink-0 group relative -my-3 sm:-my-4">
@@ -82,9 +83,8 @@ export default function Navbar() {
             </Link>
 
             <nav
-              className={`hidden md:flex items-center gap-6 lg:gap-7 text-sm font-semibold transition-colors ${
-                useScrolledStyle || !isHome ? "text-slate-600" : "text-white/90"
-              }`}
+              className={`hidden md:flex items-center gap-6 lg:gap-7 text-sm font-semibold transition-colors ${useScrolledStyle || !isHome ? "text-slate-600" : "text-white/90"
+                }`}
             >
               {navLinks.map((link) => (
                 <Link
@@ -104,11 +104,10 @@ export default function Navbar() {
                 ) : (
                   <SignInButton mode="modal">
                     <button
-                      className={`text-sm font-bold px-3.5 py-2 rounded-lg transition-all ${
-                        useScrolledStyle
+                      className={`text-sm font-bold px-3.5 py-2 rounded-lg transition-all ${useScrolledStyle
                           ? "text-indigo-600 hover:bg-indigo-50"
                           : "text-white hover:bg-white/10"
-                      }`}
+                        }`}
                     >
                       Sign In
                     </button>
@@ -125,11 +124,10 @@ export default function Navbar() {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                className={`md:hidden p-2 transition-colors rounded-lg ${
-                  useScrolledStyle || isMenuOpen
+                className={`md:hidden p-2 transition-colors rounded-lg ${useScrolledStyle || isMenuOpen
                     ? "text-slate-700"
                     : "text-white"
-                }`}
+                  }`}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -168,11 +166,10 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className={`block py-3 px-4 rounded-xl text-base font-semibold transition-colors ${
-                        pathname === link.href
+                      className={`block py-3 px-4 rounded-xl text-base font-semibold transition-colors ${pathname === link.href
                           ? "bg-indigo-50 text-indigo-600"
                           : "text-slate-700 hover:bg-slate-50"
-                      }`}
+                        }`}
                     >
                       {link.name}
                     </Link>

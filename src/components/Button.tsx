@@ -14,6 +14,7 @@ interface ButtonProps {
   size?: "normal" | "large";
   className?: string;
   icon?: ReactNode;
+  iconPosition?: "left" | "right";
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   loading?: boolean;
@@ -28,6 +29,7 @@ export default function Button({
   size = "normal",
   className,
   icon,
+  iconPosition = "left",
   type = "button",
   disabled = false,
   loading = false,
@@ -56,8 +58,13 @@ export default function Button({
   const content = (
     <>
       {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+      {!loading && icon && iconPosition === "left" && (
+        <span className="flex-shrink-0">{icon}</span>
+      )}
       {label || children}
-      {!loading && icon && <span className="flex-shrink-0">{icon}</span>}
+      {!loading && icon && iconPosition === "right" && (
+        <span className="flex-shrink-0">{icon}</span>
+      )}
     </>
   );
 
