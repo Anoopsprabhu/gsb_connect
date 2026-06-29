@@ -122,7 +122,7 @@ export default async function WebinarDetailPage({
     <div className="bg-slate-50 min-h-screen pb-20">
       {/* Hero Section */}
       <section
-        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 w-full overflow-hidden bg-[#0f1423]"
+        className="relative pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 w-full overflow-hidden bg-[#0f1423]"
         data-reveal-off
       >
         {/* Modern Vector Backgrounds */}
@@ -145,38 +145,38 @@ export default async function WebinarDetailPage({
         <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col justify-end">
           <Link
             href="/webinars"
-            className="inline-flex items-center gap-2 text-indigo-200 hover:text-white transition-colors text-sm font-medium mb-10 w-fit"
+            className="inline-flex items-center gap-2 text-indigo-200 hover:text-white transition-colors text-xs sm:text-sm font-medium mb-6 sm:mb-10 w-fit"
           >
-            <ArrowLeft size={16} /> Back to Webinars
+            <ArrowLeft size={14} className="sm:w-4 sm:h-4" /> Back to Webinars
           </Link>
 
-          <div className="flex flex-col gap-6 max-w-4xl">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white uppercase tracking-wider shadow-lg">
-                <Video size={14} />
+          <div className="flex flex-col gap-4 sm:gap-6 max-w-4xl">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-semibold text-white uppercase tracking-wider shadow-lg">
+                <Video size={12} className="sm:w-3.5 sm:h-3.5" />
                 Webinar
               </span>
-              <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/10 backdrop-blur-md border border-amber-500/20 text-xs font-semibold text-amber-300 uppercase tracking-wider shadow-lg">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-amber-500/10 backdrop-blur-md border border-amber-500/20 text-[10px] sm:text-xs font-semibold text-amber-300 uppercase tracking-wider shadow-lg">
                 {getPlatformIcon(webinar.platform)} {webinar.platform}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300 leading-tight tracking-tight drop-shadow-sm pb-2">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300 leading-tight tracking-tight drop-shadow-sm pb-1 sm:pb-2">
               {webinar.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-slate-300 text-base mt-2">
-              <div className="flex items-center gap-3 bg-white/5 backdrop-blur-lg px-5 py-2.5 rounded-2xl border border-white/5 shadow-xl">
-                <div className="p-1.5 bg-indigo-500/20 rounded-lg">
-                  <Calendar size={18} className="text-indigo-300" />
+            <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-slate-300 text-xs sm:text-base mt-1 sm:mt-2">
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-lg px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                <div className="p-1 sm:p-1.5 bg-indigo-500/20 rounded-lg">
+                  <Calendar size={15} className="text-indigo-300 sm:w-4.5 sm:h-4.5" />
                 </div>
                 <span className="font-medium tracking-wide">
                   {format(new Date(webinar.date), "EEEE, MMMM d, yyyy")}
                 </span>
               </div>
-              <div className="flex items-center gap-3 bg-white/5 backdrop-blur-lg px-5 py-2.5 rounded-2xl border border-white/5 shadow-xl">
-                <div className="p-1.5 bg-amber-500/20 rounded-lg">
-                  <Clock size={18} className="text-amber-300" />
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-lg px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                <div className="p-1 sm:p-1.5 bg-amber-500/20 rounded-lg">
+                  <Clock size={15} className="text-amber-300 sm:w-4.5 sm:h-4.5" />
                 </div>
                 <span className="font-medium tracking-wide">
                   {webinar.startTime || "TBA"}

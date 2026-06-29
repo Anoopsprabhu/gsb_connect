@@ -109,7 +109,6 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
     eyebrow: "Upcoming Webinar",
     title: `${latestWebinar.title} • ${new Date(latestWebinar.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} ${latestWebinar.startTime ? `, ${latestWebinar.startTime}` : ""}`,
     subtitle: "Learn, Network, and Grow",
-    description: latestWebinar.description || "Don't miss out on our latest insights and strategies from industry leaders.",
     primaryCta: "Register Now",
     primaryHref: `/webinars/${latestWebinar.id}`,
     secondaryCta: "All Webinars",
@@ -152,7 +151,7 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
   return (
     <section
       data-reveal-off
-      className="relative h-dvh min-h-[560px] w-full overflow-hidden bg-black isolate"
+      className="relative h-auto landscape:h-dvh md:h-dvh min-h-[50vh] md:min-h-[560px] w-full overflow-hidden bg-black isolate"
     >
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
@@ -175,7 +174,7 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
               alt=""
               fill
               sizes="100vw"
-              className="object-cover opacity-45"
+              className={`${current === 0 ? "object-cover sm:object-contain" : "object-cover"} opacity-45`}
               priority={current === 0}
             />
           </motion.div>
@@ -198,7 +197,7 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
         className="absolute bottom-1/3 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"
       />
 
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col justify-center items-start pt-20 sm:pt-24 pb-28 sm:pb-32">
+      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col justify-center items-start pt-28 sm:pt-24 pb-20 sm:pb-32">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -208,7 +207,7 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
             animate="visible"
             exit="exit"
           >
-            <motion.div variants={textVariants} className="mb-5">
+            <motion.div variants={textVariants} className="mb-2 sm:mb-5">
               <span className="inline-flex items-center gap-3 text-amber-400 font-semibold tracking-[0.2em] uppercase text-xs md:text-sm">
                 <span className="h-px w-8 bg-gradient-to-r from-transparent to-amber-400 animate-shimmer" />
                 {slide.eyebrow}
@@ -217,7 +216,7 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
 
             <motion.h1
               variants={textVariants}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-medium text-white leading-[1.1] tracking-tight"
+              className="text-xl sm:text-4xl md:text-5xl lg:text-7xl font-medium text-white leading-[1.15] tracking-tight"
             >
               {slide.title}
             </motion.h1>
@@ -225,7 +224,7 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
             {slide.subtitle && (
               <motion.p
                 variants={textVariants}
-                className="mt-5 text-xl md:text-2xl lg:text-3xl text-amber-200/90 font-medium leading-snug"
+                className="mt-2 sm:mt-5 text-sm sm:text-xl md:text-2xl lg:text-3xl text-amber-200/90 font-medium leading-snug"
               >
                 {slide.subtitle}
               </motion.p>
@@ -233,18 +232,18 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
 
             <motion.p
               variants={textVariants}
-              className="mt-6 text-base md:text-lg text-slate-300/90 max-w-2xl leading-relaxed"
+              className="mt-3 sm:mt-6 text-xs sm:text-base md:text-lg text-slate-300/90 max-w-2xl leading-relaxed"
             >
               {slide.description}
             </motion.p>
 
             <motion.div
               variants={textVariants}
-              className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 w-full sm:w-auto"
+              className="mt-4 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 w-full sm:w-auto"
             >
               <Button
                 href={slide.primaryHref}
-                size="large"
+                size="normal"
                 variant="primary"
                 icon={
                   <ArrowRight
@@ -252,15 +251,15 @@ export default function HeroCarousel({ latestWebinar }: { latestWebinar?: Webina
                     className="group-hover:translate-x-1 transition-transform"
                   />
                 }
-                className="group w-full sm:w-auto justify-center shadow-lg shadow-amber-900/30"
+                className="group w-full sm:w-auto justify-center shadow-lg shadow-amber-900/30 sm:px-5 sm:py-4 sm:text-base"
               >
                 {slide.primaryCta}
               </Button>
               <Button
                 href={slide.secondaryHref}
-                size="large"
+                size="normal"
                 variant="outline"
-                className="w-full sm:w-auto justify-center bg-white/5 text-white backdrop-blur-md border-amber-400/40 hover:bg-amber-400/15"
+                className="w-full sm:w-auto justify-center bg-white/5 text-white backdrop-blur-md border-amber-400/40 hover:bg-amber-400/15 sm:px-5 sm:py-4 sm:text-base"
               >
                 {slide.secondaryCta}
               </Button>

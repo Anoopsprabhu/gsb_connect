@@ -167,6 +167,9 @@ model Webinar {
   registrationOpen Boolean  @default(true)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+  posterUrl        String?  @default("")
+  posterPublicId   String?  @default("")
+  userId           String?
 
   registrations WebinarRegistration[]
 
