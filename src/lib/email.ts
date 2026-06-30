@@ -13,7 +13,7 @@ export async function sendCofounderInvite(to: string, startupName: string, start
   const inviteLink = `${baseUrl}/register/startup/edit/${startupId}`;
   
   const mailOptions = {
-    from: `"GSB Connect" <${process.env.EMAIL_USER}>`,
+    from: `"GSB Startup Angels" <${process.env.EMAIL_USER}>`,
     to,
     subject: `Invitation to collaborate on ${startupName}`,
     html: `
@@ -65,9 +65,9 @@ export async function sendWebinarConfirmation(
     : "";
 
   const mailOptions = {
-    from: `"GSB Connect" <${process.env.EMAIL_USER}>`,
+    from: `"GSB Startup Angels" <${process.env.EMAIL_USER}>`,
     to,
-    subject: `🎓 You're registered for "${webinar.title}" — Here's your link!`,
+    subject: `🎓 Registration Confirmed: "${webinar.title}"`,
     html: `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
         <!-- Header -->
@@ -106,6 +106,10 @@ export async function sendWebinarConfirmation(
                 <td style="padding: 8px 0; color: #1e293b; font-size: 14px;">💻 ${webinar.platform}</td>
               </tr>
             </table>
+            
+            <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed #fde68a; color: #92400e; font-size: 13px; font-weight: 600; text-align: center;">
+              ℹ️ The Webinar Join URL will be sent 48 hours before the Webinar.
+            </div>
           </div>
 
           ${speakersList ? `
