@@ -73,8 +73,7 @@ export default function WebinarRegistrationForm({
           <span className="font-bold text-indigo-600">{webinarTitle}</span>.
         </p>
         <p className="text-base text-slate-500 mb-10 max-w-md mx-auto leading-relaxed">
-          Check your email for the webinar link and details. We&apos;ve sent
-          everything you need to join!
+          A confirmation email has been sent to you. The Webinar Join URL will be sent 48 hours before the Webinar.
         </p>
         <Button
           href={`/webinars/${webinarId}`}
@@ -196,11 +195,11 @@ export default function WebinarRegistrationForm({
                 loading={isSubmitting}
                 className="w-full"
                 label={
-                  isSubmitting ? "Processing..." : "Register & Get Webinar Link"
+                  isSubmitting ? "Processing..." : "Register for Webinar"
                 }
               />
               <p className="text-center text-slate-400 text-xs mt-6">
-                The webinar link will be sent to your email after registration.
+                The Webinar Join URL will be sent 48 hours before the Webinar.
               </p>
             </div>
           </form>

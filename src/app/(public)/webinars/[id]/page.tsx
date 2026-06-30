@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import Button from "@/components/Button";
 import ShareButton from "@/components/ShareButton";
+import FloatingRegisterButton from "@/components/FloatingRegisterButton";
+
 
 async function getWebinar(id: string) {
   try {
@@ -165,25 +167,38 @@ export default async function WebinarDetailPage({
               {webinar.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-slate-300 text-xs sm:text-base mt-1 sm:mt-2">
-              <div className="flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-lg px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
-                <div className="p-1 sm:p-1.5 bg-indigo-500/20 rounded-lg">
-                  <Calendar size={15} className="text-indigo-300 sm:w-4.5 sm:h-4.5" />
-                </div>
-                <span className="font-medium tracking-wide">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-slate-300 text-sm sm:text-base mt-1 sm:mt-2">
+              <div className="flex items-center gap-2">
+                <Calendar size={16} className="text-indigo-400" />
+                <span>
                   {format(new Date(webinar.date), "EEEE, MMMM d, yyyy")}
                 </span>
               </div>
-              <div className="flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-lg px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
-                <div className="p-1 sm:p-1.5 bg-amber-500/20 rounded-lg">
-                  <Clock size={15} className="text-amber-300 sm:w-4.5 sm:h-4.5" />
-                </div>
-                <span className="font-medium tracking-wide">
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <div className="flex items-center gap-2">
+                <Clock size={16} className="text-amber-400" />
+                <span>
                   {webinar.startTime || "TBA"}
                   {webinar.endTime ? ` – ${webinar.endTime}` : ""}
                 </span>
               </div>
             </div>
+
+            {webinar.registrationOpen !== false ? (
+              <div className="mt-6 lg:hidden w-full sm:w-auto">
+                <Button
+                  href={`/webinars/${webinar.id}/register`}
+                  size="large"
+                  variant="primary"
+                  className="w-full sm:w-auto text-center"
+                  label="Register Now"
+                />
+              </div>
+            ) : (
+              <div className="mt-6 lg:hidden w-full sm:w-auto px-4 py-3 rounded-xl bg-white/10 text-slate-300 text-center text-sm font-semibold border border-white/10">
+                Registrations Closed
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -311,8 +326,7 @@ export default async function WebinarDetailPage({
                       Check your email
                     </h4>
                     <p className="text-sm text-slate-500 mt-1">
-                      You&apos;ll receive the webinar link and details in your inbox
-                      immediately.
+                      You&apos;ll receive a registration confirmation email immediately. The Webinar Join URL will be sent 48 hours before the Webinar.
                     </p>
                   </div>
                 </div>
@@ -325,7 +339,7 @@ export default async function WebinarDetailPage({
                       Join on the day
                     </h4>
                     <p className="text-sm text-slate-500 mt-1">
-                      Click the link in your email at the scheduled time to join
+                      Click the join link in your inbox at the scheduled time to join
                       via {webinar.platform}.
                     </p>
                   </div>
@@ -426,6 +440,16 @@ export default async function WebinarDetailPage({
           </div>
         </div>
       </div>
+      {webinar.registrationOpen !== false && (
+        <FloatingRegisterButton
+          registerUrl={`/webinars/${webinar.id}/register`}
+          title={webinar.title}
+          dateText={`${format(new Date(webinar.date), "MMMM d, yyyy")}${
+            webinar.startTime ? ` • ${webinar.startTime}` : ""
+          }`}
+          subText="Upcoming Webinar"
+        />
+      )}
     </div>
   );
 }
