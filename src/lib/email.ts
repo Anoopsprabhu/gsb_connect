@@ -106,10 +106,6 @@ export async function sendWebinarConfirmation(
                 <td style="padding: 8px 0; color: #1e293b; font-size: 14px;">💻 ${webinar.platform}</td>
               </tr>
             </table>
-            
-            <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed #fde68a; color: #92400e; font-size: 13px; font-weight: 600; text-align: center;">
-              ℹ️ The Webinar Join URL will be sent 48 hours before the Webinar.
-            </div>
           </div>
 
           ${speakersList ? `
@@ -122,10 +118,17 @@ export async function sendWebinarConfirmation(
           </div>
           ` : ""}
 
+          <!-- 48-hour notice -->
+          <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 14px 20px; margin: 0 0 24px 0; text-align: center;">
+            <p style="margin: 0; color: #92400e; font-size: 13px; font-weight: 600;">
+              ⏰ The Webinar URL will be sent 48 hours before the Webinar day.
+            </p>
+          </div>
+
           <!-- Footer -->
           <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;" />
           <p style="color: #94a3b8; font-size: 12px; text-align: center; margin: 0;">
-            GSB Connect — Funding Dreams. Building Founders.<br/>
+            GSB Startup Angels — Funding Dreams. Building Founders.<br/>
             If you have questions, reply to this email or <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/contact" style="color: #b8860b;">contact us</a>.
           </p>
         </div>
