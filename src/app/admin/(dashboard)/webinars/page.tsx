@@ -227,19 +227,19 @@ export default function AdminWebinarsPage() {
         flex: 2,
         minWidth: 250,
         cellRenderer: (params: any) => (
-          <div className="flex flex-col justify-center h-full">
-            <span className="font-semibold text-slate-900 truncate">
-              {params.value}
+          <div className="flex flex-col justify-center h-full min-w-0 w-full">
+            <span className="font-semibold text-slate-900 block truncate w-full" title={params.data?.title}>
+              {params.data?.title || params.value}
             </span>
-            {params.data.webinarLink && (
+            {params.data?.webinarLink && (
               <a
                 href={params.data.webinarLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] text-indigo-600 flex items-center gap-1 hover:underline"
+                className="text-[10px] text-indigo-600 flex items-center gap-1 hover:underline truncate"
               >
-                <ExternalLink className="w-3 h-3" />
-                Meeting Link
+                <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                <span className="truncate">Meeting Link</span>
               </a>
             )}
           </div>
@@ -318,11 +318,10 @@ export default function AdminWebinarsPage() {
             <button
               type="button"
               onClick={() => toggleRegistration(params.data.id, isOpen)}
-              className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${
-                isOpen
-                  ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
-                  : "bg-red-50 text-red-700 hover:bg-red-100"
-              }`}
+              className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${isOpen
+                ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                : "bg-red-50 text-red-700 hover:bg-red-100"
+                }`}
               title={
                 isOpen
                   ? "Click to close registrations"
